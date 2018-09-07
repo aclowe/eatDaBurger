@@ -1,12 +1,14 @@
 <div class="outlineBox">
 <h2>Uneaten Burgers</h2>
 
+{{!-- show all burgers in HTML where value of "devoured" is "false" --}}
 <ul>
   {{#each burgers}}
   {{#unless devoured}}
   <form action="/api/burgers/{{this.id}}" method="POST">   
   <div class="uneatenBurger">
     <li class="block">{{this.burger_name}}</li>
+    {{!-- button to change a burger's "devoured" status from "false" to "true" in DB --}}
     <button type="submit" class="change-devoured block" data-id="{{this.id}}" data-newDevoured="{{devoured}}">DEVOUR!</button>
   </div>
     {{/unless}}
@@ -15,6 +17,7 @@
 </form>
 </div>
 
+{{!-- show all burgers in HTML where value of "devoured" is "true" --}}
 <div class="outlineBox">
 <h2>Eaten Burgers</h2>
 <ul>
@@ -26,6 +29,7 @@
 </ul>
 </div>
 
+{{!-- form used to submit a new burger --}}
 <div class="outlineBox">
 <h2>Add a Burger</h2>
 <form class="create-form" action="/api/burgers" method="POST">

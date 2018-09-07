@@ -3,7 +3,7 @@ var mysql = require("mysql");
 var connection;
 
 if (process.env.JAWSDB_URL) {
-connection = mysql.createConnection(process.env.JAWSDB_URL)
+connection = mysql.createConnection(process.env.JAWSDB_URL);
 }
 else {
 connection = mysql.createConnection({
@@ -13,7 +13,7 @@ connection = mysql.createConnection({
   password: "root",
   database: "burgers_db"
 });
-}
+};
 
 // make connnection to MySQL
 connection.connect(function(err) {
@@ -21,7 +21,6 @@ connection.connect(function(err) {
     console.error("error connecting: " + err.stack);
     return;
   }
-
   console.log("connected as id " + connection.threadId);
 });
 

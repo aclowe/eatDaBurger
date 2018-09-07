@@ -1,3 +1,4 @@
+// import connection
 var connection = require("../config/connection.js");
 
 // ["?", "?", "?"].toString() => "?,?,?";
@@ -11,7 +12,7 @@ function printQuestionMarks(num) {
   return arr.toString();
 }
 
-// Helper function to convert object key/value pairs to SQL syntax
+// helper function to convert object key/value pairs to SQL syntax
 function objToSql(ob) {
   var arr = [];
 
@@ -34,8 +35,9 @@ function objToSql(ob) {
   return arr.toString();
 }
 
-// Object for all SQL statement functions.
+// object for all SQL statement functions
 var orm = {
+    // ORM to view all entries in db
     selectAll: function(tableInput, cb) {
       var queryString = "SELECT * FROM " + tableInput + ";";
       connection.query(queryString, function(err, result) {
@@ -45,6 +47,7 @@ var orm = {
         cb(result);
       });
     },
+    // ORM to add a new db entry
     insertOne: function(table, cols, vals, cb) {
       var queryString = "INSERT INTO " + table;
   
@@ -64,7 +67,7 @@ var orm = {
         cb(result);
       });
     },
-    // An example of objColVals would be {burger_name: bacon chesseburger, devoured: true}
+    // ORM to update a db entry
     updateOne: function(table, objColVals, condition, cb) {
       var queryString = "UPDATE " + table;
   
@@ -82,19 +85,20 @@ var orm = {
         cb(result);
       });
     },
-    delete: function(table, condition, cb) {
-      var queryString = "DELETE FROM " + table;
-      queryString += " WHERE ";
-      queryString += condition;
+    // ORM to delete entry in DB
+    // delete: function(table, condition, cb) {
+    //   var queryString = "DELETE FROM " + table;
+    //   queryString += " WHERE ";
+    //   queryString += condition;
   
-      connection.query(queryString, function(err, result) {
-        if (err) {
-          throw err;
-        }
+    //   connection.query(queryString, function(err, result) {
+    //     if (err) {
+    //       throw err;
+    //     }
   
-        cb(result);
-      });
-    }
+    //     cb(result);
+    //   });
+    // }
   };
   
   // Export the orm object for the model
